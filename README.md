@@ -6,4 +6,4 @@
 
 # Issues
 
-- `gitm comment -m "Comment"` not worls
+- `gitm comment -m "Comment"` not works
