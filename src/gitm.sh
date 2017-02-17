@@ -119,7 +119,7 @@ function gitRemoteChangeUrl {
     error "ussage: $0 $1 [<remote_name>] <new_remote_url>"
     exit 1
   fi
-  
+
   gitCommand "remote set-url $remote $url"
   ok "Remote $remote was changed"
   gitRemoteList
@@ -174,8 +174,9 @@ function gitFetch {
   remote=$(getRemoteForCommand $*)
 
   lastPart="$*"
-  lastPart="${lastPart/$1 /}"
-  lastPart="${lastPart/$remote /}"
+  lastPart="${lastPart/$1/}"
+  lastPart="${lastPart/$remote/}"
+  lastPart=$(trim "$lastPart")
 
   gitCommand "fetch $remote $lastPart"
 }
@@ -185,10 +186,9 @@ function gitPush {
   remote=$(getRemoteForCommand $*)
   
   lastPart="$*"
-  echo $lastPart
-  exit 1
-  lastPart="${lastPart/$1 /}"
-  lastPart="${lastPart/$remote /}"
+  lastPart="${lastPart/$1/}"
+  lastPart="${lastPart/$remote/}"
+  lastPart=$(trim "$lastPart")
 
   gitCommand "push $remote $lastPart"
 }
